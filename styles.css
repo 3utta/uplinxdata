@@ -7,6 +7,15 @@
     -webkit-text-fill-color: transparent;
 }
 
+/* Hero section backgrounds */
+#home {
+    background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1700&q=80');
+}
+
+.blog-hero {
+    background-image: url('https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=1600&q=80');
+}
+
 /* Sticky button appears only after scrolling */
 .sticky-button {
     display: none;
