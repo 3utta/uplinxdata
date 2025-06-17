@@ -1105,27 +1105,29 @@
         
         <div id="chat-box" class="hidden absolute bottom-16 right-0 w-80 bg-dark rounded-lg shadow-2xl overflow-hidden">
             <div class="bg-gradient-to-r from-primary to-secondary p-4">
-                <h4 class="text-white font-bold">Data Expert Chat</h4>
+                <h4 class="text-white font-bold" id="chat-header-name">Data Expert Chat</h4>
                 <p class="text-white text-sm opacity-80">Ask about our data solutions</p>
             </div>
-            <div class="h-72 p-4 bg-dark overflow-y-auto" id="chat-messages">
-                <div class="flex mb-3">
-                    <div class="w-8 h-8 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center mr-2">
-                        <span class="text-sm text-primary font-bold">U</span>
-                    </div>
-                    <div class="bg-dark-light p-3 rounded-lg max-w-[80%]">
-                        <p class="text-white text-sm">Hello! How can I help you with your data needs today?</p>
-                    </div>
-                </div>
+
+            <!-- Start Chat Form -->
+            <div id="chat-start" class="p-4 space-y-3">
+                <input type="text" id="user-name" placeholder="Your Name" class="w-full bg-dark-light border border-gray-700 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-secondary">
+                <input type="email" id="user-email" placeholder="Email" class="w-full bg-dark-light border border-gray-700 rounded-lg py-2 px-3 text-white focus:outline-none focus:border-secondary">
+                <button id="start-chat" class="w-full bg-primary text-white py-2 rounded-lg">Start Chat</button>
             </div>
-            <div class="p-3 border-t border-gray-800">
-                <div class="relative">
-                    <input type="text" placeholder="Type your message..." class="w-full bg-dark-light border border-gray-700 rounded-full py-2 px-4 text-white focus:outline-none focus:border-secondary transition pr-10">
-                    <button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary hover:text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
-                    </button>
+
+            <!-- Chat Interface -->
+            <div id="chat-interface" class="hidden flex flex-col h-72">
+                <div class="flex-1 p-4 bg-dark overflow-y-auto" id="chat-messages"></div>
+                <div class="p-3 border-t border-gray-800">
+                    <div class="relative">
+                        <input id="chat-input" type="text" placeholder="Type your message..." class="w-full bg-dark-light border border-gray-700 rounded-full py-2 px-4 text-white focus:outline-none focus:border-secondary transition pr-10">
+                        <button id="chat-send" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-secondary hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1376,19 +1378,77 @@
             // Chat Widget Toggle
             const chatToggle = document.getElementById('chat-toggle');
             const chatBox = document.getElementById('chat-box');
-            
+
             if (chatToggle && chatBox) {
                 chatToggle.addEventListener('click', () => {
                     chatBox.classList.toggle('hidden');
-                    
+
                     const openIcon = chatToggle.querySelector('.chat-open');
                     const closeIcon = chatToggle.querySelector('.chat-close');
-                    
+
                     openIcon.classList.toggle('hidden');
                     closeIcon.classList.toggle('hidden');
                 });
             }
-            
+
+            // Chat logic
+            const startBtn = document.getElementById('start-chat');
+            const startContainer = document.getElementById('chat-start');
+            const chatInterface = document.getElementById('chat-interface');
+            const messages = document.getElementById('chat-messages');
+            const nameInput = document.getElementById('user-name');
+            const emailInput = document.getElementById('user-email');
+            const chatHeader = document.getElementById('chat-header-name');
+            const sendBtn = document.getElementById('chat-send');
+            const chatInput = document.getElementById('chat-input');
+
+            let userName = '';
+            let userEmail = '';
+
+            if (startBtn) {
+                startBtn.addEventListener('click', () => {
+                    userName = nameInput.value.trim();
+                    userEmail = emailInput.value.trim();
+                    if (!userName || !userEmail) return;
+                    chatHeader.textContent = userName;
+                    startContainer.classList.add('hidden');
+                    chatInterface.classList.remove('hidden');
+                    chatInput.focus();
+                });
+            }
+
+            function appendMessage(text) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'flex justify-end mb-3';
+                wrapper.innerHTML = `<div class="bg-primary p-3 rounded-lg text-white max-w-[80%]">${text}</div>`;
+                messages.appendChild(wrapper);
+                messages.scrollTop = messages.scrollHeight;
+            }
+
+            function sendMessage() {
+                const text = chatInput.value.trim();
+                if (!text) return;
+                appendMessage(text);
+                fetch('http://localhost:8000/log', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: userName, email: userEmail, message: text })
+                }).catch(() => {});
+                chatInput.value = '';
+            }
+
+            if (sendBtn) {
+                sendBtn.addEventListener('click', sendMessage);
+            }
+            if (chatInput) {
+                chatInput.addEventListener('keydown', e => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+            }
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -1410,21 +1470,6 @@
                     }
                 });
             });
-            // Chat Widget Form Submission
-            const chatSubmit = document.getElementById('chat-submit');
-            const chatForm = document.getElementById('chat-form');
-            const chatSuccess = document.getElementById('chat-success');
-
-            if (chatSubmit) {
-                chatSubmit.addEventListener('click', function() {
-                    // Here you would usually add validation and AJAX submission
-                    // For now, just show the success message
-                    chatForm.classList.add('hidden');
-                    chatSuccess.classList.remove('hidden');
-                });
-            }
-
-            
             // Active nav link highlighting based on scroll position
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
