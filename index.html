@@ -1366,6 +1366,29 @@
                 a.click();
                 URL.revokeObjectURL(url);
             }
+
+            function loadSavedData() {
+                const saved = localStorage.getItem('savedSubmissions');
+                if (saved) {
+                    try {
+                        return JSON.parse(saved);
+                    } catch (e) {
+                        console.error('Failed to parse saved submissions', e);
+                    }
+                }
+                return { getInTouch: [], newsletter: [] };
+            }
+
+            function updateSavedData(type, entry) {
+                const data = loadSavedData();
+                if (type === 'getInTouch') {
+                    data.getInTouch.push(entry);
+                } else if (type === 'newsletter') {
+                    data.newsletter.push(entry);
+                }
+                localStorage.setItem('savedSubmissions', JSON.stringify(data));
+                return data;
+            }
             
             // Mobile Menu Toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1470,7 +1493,7 @@
 
                 if (isValid) {
                     const formData = {
-                        sheetName: 'Get in Touch',
+                        title: 'Get in Touch',
                         name: nameInput.value.trim(),
                         email: emailInput.value.trim(),
                         phone: phoneInput.value.trim(),
@@ -1484,7 +1507,8 @@
                     const success = document.getElementById('form-success');
                     success.classList.remove('hidden');
 
-                    downloadJSON('contact-data.json', formData);
+                    const allData = updateSavedData('getInTouch', formData);
+                    downloadJSON('submissions.json', allData);
 
                     /* If you need to send data to a backend in the future,
                     fetch('https://script.google.com/macros/s/AKfycbxt4ka0KPWWqmIa7MRXrQrRecHR9jCnxzWTIvflpWg7BXSbaJjEOoYEGSi7b9YiauHk/exec', {
@@ -1659,7 +1683,7 @@
                     }
 
                     const formData = {
-                        sheetName: 'Newsletter Signups',
+                        title: 'Newsletter',
                         email: email
                     };
 
@@ -1672,7 +1696,8 @@
                         }, 2000);
                     }
 
-                    downloadJSON('newsletter-data.json', formData);
+                    const allData = updateSavedData('newsletter', formData);
+                    downloadJSON('submissions.json', allData);
 
                     /* Uncomment to submit to a backend
                     fetch('https://script.google.com/macros/s/AKfycbxt4ka0KPWWqmIa7MRXrQrRecHR9jCnxzWTIvflpWg7BXSbaJjEOoYEGSi7b9YiauHk/exec', {
