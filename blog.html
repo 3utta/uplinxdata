@@ -178,6 +178,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({ once: true, duration: 800, offset: 100 });
 
+            function downloadJSON(filename, data) {
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+
             const mobileBtn = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -210,7 +220,7 @@
                     email: document.getElementById('email').value,
                     comment: document.getElementById('comment').value
                 };
-                console.log(JSON.stringify(payload));
+                downloadJSON('comment.json', payload);
                 commentModal.classList.add('hidden');
                 commentForm.reset();
             });
