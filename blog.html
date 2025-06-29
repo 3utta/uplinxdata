@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UplinxData Blog - Importance of Prospecting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    screens: {
+                        'xs': '320px',
+                        'phone-sm': '360px',
+                        'phone-md': '390px',
+                        'iphone-12-pro': '390px',
+                        'phone-lg': '414px',
+                        'iphone-xr': '414px',
+                        'phone-xl': '430px',
+                        'iphone-14-pro-max': '430px',
+                        'fold': '480px',
+                        'tablet-portrait': '768px',
+                        'ipad-mini': '768px',
+                        'tablet-landscape': '1024px',
+                        'nest-hub': '1024px',
+                        'laptop': '1280px',
+                        'nest-hub-max': '1280px',
+                        'desktop-wide': '1440px'
+                    },
+                    colors: {
+                        primary: '#a75eff',
+                        secondary: '#50ffb1',
+                        dark: '#121212',
+                        'dark-light': '#1e1e1e',
+                    },
+                    fontFamily: {
+                        'roboto': ['Roboto', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg,#a75eff,#50ffb1); }
+        .gradient-text { background: linear-gradient(135deg,#a75eff,#50ffb1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    </style>
+</head>
+<body class="bg-dark text-white font-roboto">
+    <header class="fixed w-full bg-dark-light shadow-lg z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <span class="text-2xl font-bold gradient-text">UplinxData</span>
+            <button id="mobile-menu-button" class="tablet-portrait:hidden w-11 h-11 flex items-center justify-center text-white hover:text-secondary transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="5" r="2" />
+                    <circle cx="12" cy="12" r="2" />
+                    <circle cx="12" cy="19" r="2" />
+                </svg>
+            </button>
+            <nav class="hidden tablet-portrait:flex items-center space-x-6">
+                <a href="index.html#home" class="text-white hover:text-secondary transition">Home</a>
+                <div class="relative group">
+                    <a href="index.html#services" class="text-white hover:text-secondary transition cursor-pointer">Our Solutions</a>
+                    <div class="absolute left-0 top-full w-48 bg-dark-light rounded-md shadow-lg hidden group-hover:block z-10">
+                        <a href="index.html#data-solutions" class="block px-4 py-2 text-white hover:text-secondary">Data Solutions</a>
+                        <a href="index.html#ai-automation" class="block px-4 py-2 text-white hover:text-secondary">AI &amp; Automation</a>
+                        <a href="index.html#web-scraping-section" class="block px-4 py-2 text-white hover:text-secondary">Web Scraping</a>
+                    </div>
+                </div>
+                <a href="blog.html" class="text-white hover:text-secondary transition">Blog</a>
+                <a href="index.html#contact" class="text-white hover:text-secondary transition">Contact</a>
+            </nav>
+        </div>
+        <div id="mobile-menu" class="hidden tablet-portrait:hidden bg-dark-light">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="index.html#home" class="text-white hover:text-secondary transition py-2">Home</a>
+                <a href="index.html#data-solutions" class="text-white hover:text-secondary transition py-2">Data Solutions</a>
+                <a href="index.html#ai-automation" class="text-white hover:text-secondary transition py-2">AI &amp; Automation</a>
+                <a href="index.html#web-scraping-section" class="text-white hover:text-secondary transition py-2">Web Scraping</a>
+                <a href="blog.html" class="text-white hover:text-secondary transition py-2">Blog</a>
+                <a href="index.html#contact" class="text-white hover:text-secondary transition py-2">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="h-[60vh] bg-cover bg-center flex items-center justify-center" style="background-image:url('https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?auto=format&fit=crop&w=1600&q=80')">
+        <div class="bg-dark-light bg-opacity-80 p-6 rounded-lg text-center" data-aos="fade-up">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">Importance of Prospecting With the Right Targeted Data</h1>
+            <span class="text-gray-400">By Abdullah · <time datetime="2024-01-01">Jan 1, 2024</time></span>
+        </div>
+    </section>
+
+    <article class="max-w-3xl mx-auto px-6 py-12 space-y-8">
+        <div data-aos="fade-up">
+            <h2 class="text-2xl font-semibold mb-2">Why Precision Matters</h2>
+            <p class="text-gray-300">Targeting the right audience saves resources and dramatically boosts response rates. Leveraging quality data lets your team focus efforts where they count.</p>
+        </div>
+        <div data-aos="fade-up">
+            <h2 class="text-2xl font-semibold mb-2">Building Better Relationships</h2>
+            <p class="text-gray-300">Accurate information helps craft messages that resonate. Prospects feel understood and are more likely to engage when outreach speaks directly to their needs.</p>
+        </div>
+        <div data-aos="fade-up">
+            <h2 class="text-2xl font-semibold mb-2">Key Takeaways</h2>
+            <ul class="list-disc list-inside text-gray-300">
+                <li>Focus marketing on well-researched segments.</li>
+                <li>Use enriched data for deeper personalization.</li>
+                <li>Continuously track metrics and refine outreach.</li>
+            </ul>
+        </div>
+
+        <div class="flex items-center gap-6" data-aos="fade-up">
+            <button id="like-btn" class="flex items-center text-primary gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+                </svg>
+                <span id="like-count">0</span>
+            </button>
+            <button id="comment-toggle" class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4-4.03 7-9 7a9.91 9.91 0 01-4-.8L3 19l1.8-4A7.79 7.79 0 013 12c0-4 4.03-7 9-7s9 3 9 7z" />
+                </svg>
+                <span class="ml-1">Comment</span>
+            </button>
+            <div class="relative">
+                <button id="share-toggle" class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12v.01M12 4h.01M20 12v.01M12 20h.01M8 16L16 8" />
+                    </svg>
+                    <span class="ml-1">Share</span>
+                </button>
+                <div id="share-menu" class="absolute left-0 mt-2 bg-dark-light p-2 rounded shadow-lg hidden">
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://uplinxdata.com" target="_blank" class="block px-2 py-1 hover:text-secondary">LinkedIn</a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://uplinxdata.com" target="_blank" class="block px-2 py-1 hover:text-secondary">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <div id="comment-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden">
+        <div class="bg-dark-light p-6 rounded-lg w-11/12 max-w-md">
+            <h3 class="text-xl mb-4">Leave a Comment</h3>
+            <form id="comment-form" class="space-y-4">
+                <input type="text" id="name" placeholder="Name" class="w-full px-3 py-2 rounded text-dark" required>
+                <input type="email" id="email" placeholder="Email" class="w-full px-3 py-2 rounded text-dark" required>
+                <textarea id="comment" placeholder="Comment" class="w-full px-3 py-2 rounded text-dark" rows="4" required></textarea>
+                <div class="flex justify-end gap-3">
+                    <button type="button" id="modal-close" class="px-4 py-2 bg-gray-500 rounded">Cancel</button>
+                    <button type="submit" class="gradient-bg text-white px-4 py-2 rounded">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="py-12 bg-dark-light">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col tablet-portrait:flex-row justify-between items-center">
+                <div class="mb-6 tablet-portrait:mb-0">
+                    <span class="text-xl font-bold gradient-text">UplinxData</span>
+                    <p class="text-gray-400 mt-3">Hyper-Customized Data Solutions</p>
+                </div>
+                <div>
+                    <ul class="space-y-2 tablet-portrait:flex tablet-portrait:space-x-6 tablet-portrait:space-y-0 text-center tablet-portrait:text-left">
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="index.html#data-solutions" class="text-gray-400 hover:text-white transition">Data Solutions</a></li>
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true, duration: 800, offset: 100 });
+
+            const mobileBtn = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+            const likeBtn = document.getElementById('like-btn');
+            const likeCount = document.getElementById('like-count');
+            let likes = parseInt(localStorage.getItem('blogLikes') || '0');
+            likeCount.textContent = likes;
+            likeBtn.addEventListener('click', () => {
+                likes++;
+                localStorage.setItem('blogLikes', likes);
+                likeCount.textContent = likes;
+            });
+
+            const commentToggle = document.getElementById('comment-toggle');
+            const commentModal = document.getElementById('comment-modal');
+            const modalClose = document.getElementById('modal-close');
+            commentToggle.addEventListener('click', () => commentModal.classList.remove('hidden'));
+            modalClose.addEventListener('click', () => commentModal.classList.add('hidden'));
+
+            const shareToggle = document.getElementById('share-toggle');
+            const shareMenu = document.getElementById('share-menu');
+            shareToggle.addEventListener('click', () => shareMenu.classList.toggle('hidden'));
+
+            const commentForm = document.getElementById('comment-form');
+            commentForm.addEventListener('submit', e => {
+                e.preventDefault();
+                const payload = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    comment: document.getElementById('comment').value
+                };
+                console.log(JSON.stringify(payload));
+                commentModal.classList.add('hidden');
+                commentForm.reset();
+            });
+        });
+    </script>
+    <script>
+        const deviceViewports = [
+            { name: "iPhone SE",              vp: [320, 568] },
+            { name: "Galaxy S8+",             vp: [360, 740] },
+            { name: "Galaxy A16 5G",          vp: [360, 780] },
+            { name: "phone-sm",               range: "360-389" },
+            { name: "iPhone 12 Pro",          vp: [390, 844] },
+            { name: "phone-md",               range: "390-413" },
+            { name: "iPhone XR",              vp: [414, 896] },
+            { name: "phone-lg",               range: "414-429" },
+            { name: "iPhone 14 Pro Max",      vp: [430, 932] },
+            { name: "iPhone 16 Pro Max",      vp: [440, 956] },
+            { name: "phone-xl",               range: "430-479" },
+            { name: "Galaxy Z Fold 5 (cover)", vp: [768, 1076] },
+            { name: "fold",                   range: "480-767" },
+            { name: "iPad Mini / Air",        vp: [768, 1024] },
+            { name: "Nest Hub (7\")",         vp: [1024, 600] },
+            { name: "tablet-portrait",        range: "768-1019" },
+            { name: "iPad Pro 12.9",          vp: [1024, 1366] },
+            { name: "tablet-landscape",       range: "1024-1279" },
+            { name: "Asus Zenbook Fold",      vp: [1280, 960] },
+            { name: "Nest Hub Max (10\")",    vp: [1280, 800] },
+            { name: "laptop",                 range: "1280-1439" },
+            { name: "desktop-wide",           min: 1440 }
+        ];
+        console.table(deviceViewports);
+    </script>
+</body>
+</html>
