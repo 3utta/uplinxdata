@@ -1356,6 +1356,16 @@
                 once: true,
                 offset: 100,
             });
+
+            function downloadJSON(filename, data) {
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
             
             // Mobile Menu Toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -1459,28 +1469,33 @@
                 }
 
                 if (isValid) {
-                    const formData = new URLSearchParams();
-                    formData.append('sheetName', 'Get in Touch');
-                    formData.append('name', nameInput.value.trim());
-                    formData.append('email', emailInput.value.trim());
-                    formData.append('phone', phoneInput.value.trim());
-                    formData.append('business', businessInput.value.trim());
-                    formData.append('website', websiteInput.value.trim());
-                    formData.append('dataNeeds', dataNeedsInput.value);
-                    formData.append('message', messageInput.value.trim());
+                    const formData = {
+                        sheetName: 'Get in Touch',
+                        name: nameInput.value.trim(),
+                        email: emailInput.value.trim(),
+                        phone: phoneInput.value.trim(),
+                        business: businessInput.value.trim(),
+                        website: websiteInput.value.trim(),
+                        dataNeeds: dataNeedsInput.value,
+                        message: messageInput.value.trim(),
+                    };
 
                     contactForm.classList.add('hidden');
                     const success = document.getElementById('form-success');
                     success.classList.remove('hidden');
 
+                    downloadJSON('contact-data.json', formData);
+
+                    /* If you need to send data to a backend in the future,
                     fetch('https://script.google.com/macros/s/AKfycbxt4ka0KPWWqmIa7MRXrQrRecHR9jCnxzWTIvflpWg7BXSbaJjEOoYEGSi7b9YiauHk/exec', {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
-                        body: formData.toString()
+                        body: new URLSearchParams(formData).toString()
                     }).catch((err) => console.error('Error:', err));
+                    */
 
                     setTimeout(() => {
                         success.classList.add('hidden');
@@ -1629,7 +1644,7 @@
                 });
             }
 
-            // Newsletter signup submission to Google Sheets
+            // Newsletter signup submission - download data as JSON
             function attachNewsletterListener(form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
@@ -1643,9 +1658,10 @@
                         return;
                     }
 
-                    const formData = new URLSearchParams();
-                    formData.append('sheetName', 'Newsletter Signups');
-                    formData.append('email', email);
+                    const formData = {
+                        sheetName: 'Newsletter Signups',
+                        email: email
+                    };
 
                     if (form.id === 'newsletter-form') {
                         const successMsg = document.getElementById('newsletter-success');
@@ -1656,14 +1672,18 @@
                         }, 2000);
                     }
 
+                    downloadJSON('newsletter-data.json', formData);
+
+                    /* Uncomment to submit to a backend
                     fetch('https://script.google.com/macros/s/AKfycbxt4ka0KPWWqmIa7MRXrQrRecHR9jCnxzWTIvflpWg7BXSbaJjEOoYEGSi7b9YiauHk/exec', {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
-                        body: formData.toString()
+                        body: new URLSearchParams(formData).toString()
                     }).catch((err) => console.error('Error:', err));
+                    */
 
                     form.reset();
                 });
